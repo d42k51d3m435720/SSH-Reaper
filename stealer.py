@@ -2,7 +2,7 @@ import netmiko
 import re
 
 class Stealer:
-    def __init__ (self, host, username, password=None, key_file=None, port=22):
+    def __init__ (self, host, username, password=None, key_file=None, passphrase=None, port=22):
         if password == None and key_file == None:
             raise 'Must sp3cify passw0rd or k3y!'
         self.config = { 
@@ -16,6 +16,7 @@ class Stealer:
         if key_file is not None:
             self.config['use_keys'] = True
             self.config['key_file'] = key_file
+            self.config['passphrase'] = passphrase
 
         self.connection = netmiko.ConnectHandler(**self.config)
 
